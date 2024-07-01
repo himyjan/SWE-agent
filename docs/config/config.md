@@ -30,7 +30,7 @@ format_error_template: |-
 demonstration_template: |
   Format template for showing a demonstration to the agent
 demonstrations:
-- `trajectories/<username>/<experiment folder>/*.traj` 
+- `trajectories/<username>/<experiment folder>/*.traj`
 - File is a demonstration of how to solve a task. This could an agent generated trajectory.
 - You can include 1+ demonstrations
 
@@ -71,6 +71,18 @@ In the [`config/`](https://github.com/princeton-nlp/SWE-agent/tree/main/config) 
 * [`configs/`](https://github.com/princeton-nlp/SWE-agent/tree/main/config/configs) for examples of properly formatted configuration files. Each configuration differs in its set of commands, input/output format, demonstrations, etc.
 * [`commands/`](https://github.com/princeton-nlp/SWE-agent/tree/main/config/commands) for the bash implementations of the custom commands that SWE-agent uses to navigate + edit the codebase. More information [here](commands.md).
 
+!!! hint "Relative paths"
+    Relative paths in config files are resolved to the `SWE_AGENT_CONFIG_ROOT` environment variable (if set)
+    or the SWE-agent repository root.
+
+<details>
+<summary><code>default_from_url.yaml</code></summary>
+
+```yaml
+--8<-- "config/default_from_url.yaml"
+```
+</details>
+
 ## How a Configuration File is Processed
 Some notes on processing that occurs on config fields when SWE-agent is run:
 
@@ -82,7 +94,7 @@ Possible variables that can be used in templates are:
 - `{command_docs}` (an automatically compiled collection of available commands + their docstrings)
 - any variable given in `env_variables` (same spelling), e.g., `{WINDOW_SIZE}`
 - any variable extracted as json as part of the `state_command` function
-- the last observation `{observation}` 
+- the last observation `{observation}`
 - ... this list will grow as we implement more features!
 
 ## Template Workflow
